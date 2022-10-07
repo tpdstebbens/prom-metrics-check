@@ -1,0 +1,2 @@
+[console_scripts]
+prom-metrics-check = prom_metrics_check.cli:main
