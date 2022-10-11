@@ -5,6 +5,7 @@ from tokenize import tokenize, NUMBER, STRING, NAME, ENCODING, ENDMARKER, \
 import json
 import logging
 import urllib.request
+import os
 
 logging.basicConfig(level='ERROR')
 logger = logging.getLogger('prom-metric-check')
@@ -245,3 +246,17 @@ def load_dashboard(url=None, key=None):
         if dashboard.ok:
             dashboards.append(dashboard.json().get('dashboard', {}))
     return dashboards
+
+def json_dashboard(json_file):
+    dashboard = []
+    json_f = json.load(open(json_file))
+    dashboard.append(json_f)
+    return dashboard
+
+def json_dir_dashboards(directory):
+    dashboards = []
+    for json_dir in os.listdir(directory):
+        json_f = json.load(open(os.path.join(directory, json_dir)))
+        dashboards.append(json_f)
+    return dashboards
+
