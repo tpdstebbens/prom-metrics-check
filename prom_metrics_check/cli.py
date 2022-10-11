@@ -58,7 +58,6 @@ def main(args=None):
         nargs='*',
         default=PROMETHEUS_URLS)
     args = parser.parse_args(args)
-    print(vars(args))
     for url in args.prometheus_urls:
         if args.json_file:
             dashboards = json_dashboard(json_file=args.json_file)
